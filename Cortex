@@ -1,0 +1,12 @@
+#!/bin/bash
+echo "Step 1: Import the GPG Key"
+wget -qO- https://raw.githubusercontent.com/TheHive-Project/TheHive/master/PGP-PUBLIC-KEY | sudo gpg --dearmor -o /usr/share/keyrings/thehive-project-archive-keyring.gpg
+
+echo "Step 2: Add TheHive Project Repository"
+/etc/apt/sources.list.d/thehive-project.list
+deb [signed-by=/usr/share/keyrings/thehive-project-archive-keyring.gpg] https://deb.thehive-project.org release main
+
+echo "Step3: Update Package Lists and Install Cortex"
+
+sudo apt update
+sudo apt install cortex
