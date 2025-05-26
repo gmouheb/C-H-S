@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  cortex:
+    image: thehiveproject/cortex:latest
+    ports:
+      - "9001:9001"
+    volumes:
+      - cortex_data:/data
+    environment:
+      - JOB_DIRECTORY=/tmp/cortex-jobs
+    networks:
+      - cortex_network
+
+  vulners_analyzer:
+    build:
+      context: ./Vulners_CVE
+      dockerfile: Dockerfile
+    environment:
+      - VULNERS_API_KEY=${VULNERS_API_KEY}
+    volumes:
+      - /tmp/cortex-jobs:/tmp/cortex-jobs
+    networks:
+      - cortex_network
+    depends_on:
+      - cortex
+
+networks:
+  cortex_network:
+    driver: bridge
+
+volumes:
+  cortex_data:

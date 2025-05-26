@@ -1,0 +1,2 @@
+cortexutils>=2.0.0
+vulners>=3.0.2

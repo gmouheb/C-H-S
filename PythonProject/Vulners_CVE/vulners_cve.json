@@ -1,0 +1,25 @@
+{
+  "name": "Vulners_CVE",
+  "version": "1.0",
+  "author": "TheHive Project",
+  "url": "https://github.com/TheHive-Project/Cortex-Analyzers",
+  "license": "AGPL-V3",
+  "description": "Query Vulners.com for CVE information",
+  "dataTypeList": ["cve"],
+  "command": "Vulners_CVE/vulners/vulners_analyzer.py",
+  "baseConfig": "Vulners_CVE",
+  "config": {
+    "check_tlp": true,
+    "max_tlp": 3,
+    "service": "query"
+  },
+  "configurationItems": [
+    {
+      "name": "key",
+      "description": "Vulners API key",
+      "type": "string",
+      "multi": false,
+      "required": false
+    }
+  ]
+}
