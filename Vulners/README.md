@@ -2,6 +2,17 @@
 
 This repository contains a Cortex analyzer for querying the Vulners API to retrieve information about CVE IDs.
 
+## Recent Improvements
+
+The Vulners_CVE analyzer has been enhanced with the following features:
+
+- **CVE ID Normalization**: Automatically normalizes CVE IDs by removing spaces and converting to uppercase
+- **Format Validation**: Validates that CVE IDs follow the standard format (CVE-YYYY-NNNNN)
+- **Improved Error Handling**: Better error messages for invalid formats and when no information is found
+- **Detailed Documentation**: Added comprehensive documentation on using the analyzer with CURL
+
+For detailed usage instructions, see the [Vulners_CVE Analyzer README](./Vulners_CVE/README.md).
+
 ## Files Structure
 
 ```
@@ -101,30 +112,30 @@ Replace `JOB_ID` with the job ID returned from the run command.
 ### Common Issues
 
 1. **AttributeError: module 'vulners' has no attribute 'Vulners'**
-   
+
    This error occurs when using an older version of the vulners library or importing it incorrectly. The analyzer uses the correct import:
    ```python
    from vulners import VulnersApi
    ```
-   
+
    Make sure you're using vulners version 3.0.2 or later.
 
 2. **API Key Issues**
-   
+
    If you encounter authentication errors, check that:
    - Your Vulners API key is correct
    - The environment variable is properly set
    - The API key is correctly passed to the analyzer
 
 3. **Connection Issues**
-   
+
    If the analyzer can't connect to Cortex:
    - Ensure both services are running (`docker-compose ps`)
    - Check that they're on the same network
    - Verify the shared volume for job files is properly mounted
 
 4. **Analyzer Not Found**
-   
+
    If Cortex doesn't detect the analyzer:
    - Restart the Cortex service
    - Check the analyzer's JSON configuration file
